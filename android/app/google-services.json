@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661824567219",
+    "project_id": "flutterapp-groupiez",
+    "storage_bucket": "flutterapp-groupiez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661824567219:android:a4c518bb3196e165a4bdc6",
+        "android_client_info": {
+          "package_name": "com.example.flutterap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhFYrTPkpCuhZOvmMFTY0o9CW1CvU8gys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
