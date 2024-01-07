@@ -39,13 +39,6 @@ class _homeState extends State<home> {
                   child: Text("Menu",
                   style: TextStyle(fontSize: 35, color: Colors.white),)),
               ListTile(
-                leading: const Icon(Icons.group_outlined, color: Colors.white,),
-                title: const Text("My Community", style: TextStyle(color: Colors.white),),
-                onTap: (){
-                  Navigator.pushNamed((context), "/usersCommunity");
-                },
-              ),
-              ListTile(
                 leading: Icon(Icons.post_add, color: Colors.white,),
                 title: Text("My post", style: TextStyle(color: Colors.white),),
                 onTap: (){
