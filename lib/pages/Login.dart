@@ -109,6 +109,7 @@ class _LoginState extends State<Login> {
                     width: width/2,
                     child: TextField(
                       controller: _passwordcontroller,
+                      obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Password',

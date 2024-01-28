@@ -85,6 +85,7 @@ class _registerPageState extends State<registerPage> {
                       width: width/2,
                       child: TextField(
                         controller: _passwordcontroller,
+                        obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Password',
