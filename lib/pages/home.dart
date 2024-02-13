@@ -45,6 +45,13 @@ class _homeState extends State<home> {
                   Navigator.pushNamed((context), "/usersPost");
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.person, color: Colors.white,),
+                title: Text("My Profile", style: TextStyle(color: Colors.white),),
+                onTap: (){
+                  Navigator.pushNamed((context), "/usersProfile");
+                },
+              ),
               InkWell(
                 onTap: (){
                   authServices.signOut();

@@ -4,6 +4,7 @@ import 'package:flutterap/pages/commentPage.dart';
 import 'package:flutterap/pages/createGroup.dart';
 import 'package:flutterap/pages/home.dart';
 import 'package:flutterap/pages/homepage.dart';
+import 'package:flutterap/pages/profilepage.dart';
 import 'package:flutterap/pages/userOwnedCommunity.dart';
 import 'package:flutterap/pages/userOwnedPost.dart';
 
@@ -26,6 +27,8 @@ class RouteGen{
         return MaterialPageRoute(builder: (_) => usersPost());
       case '/usersCommunity':
         return MaterialPageRoute(builder: (_) => userCommunity());
+      case '/usersProfile':
+        return MaterialPageRoute(builder: (_) => ProfilePage());
       default:
         return _errorRoute();
     }
