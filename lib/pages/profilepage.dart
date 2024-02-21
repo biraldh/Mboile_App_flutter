@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(iconTheme: IconThemeData( color: Colors. white,),title: Text("Profile", style: TextStyle(color: Colors.white),),
+      appBar: AppBar(iconTheme: const IconThemeData( color: Colors. white,),title: Text("Profile", style: TextStyle(color: Colors.white),),
       backgroundColor: Colors.black87,),
       body: FutureBuilder(
         future: _auth.getUserDetail(currentuser),
@@ -67,11 +67,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: width / 3,
                     child: Text(
                       name,
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   ),
                   IconButton(onPressed: editnamebox,
-                      icon: Icon(Icons.edit, color: Colors.white,))
+                      icon: const Icon(Icons.edit, color: Colors.white,))
                 ],
               ),
               Row(
@@ -83,11 +83,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: width / 2,
                     child: Text(
                       address.isEmpty ? "provide your address" : address,
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   ),
                   IconButton(onPressed: editaddressbox,
-                      icon: Icon(Icons.edit, color: Colors.white,))
+                      icon: const Icon(Icons.edit, color: Colors.white,))
                 ],
               ),
               Row(
@@ -123,16 +123,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Future editnamebox() => showDialog(
       context: context,
       builder: (context)=> AlertDialog(
-        title: Text("Your name"),
+        title: const Text("Your name"),
         content: TextField(
           controller: _namecontroller,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: "enter your name"
           ),
         ),
         actions: [
           TextButton(
-              onPressed: (){profilemod(_namecontroller.text, 'name');}, child: Text("Save"))
+              onPressed: (){profilemod(_namecontroller.text, 'name');}, child: const Text("Save"))
         ],
       )
   );
@@ -140,16 +140,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Future editaddressbox() => showDialog(
       context: context,
       builder: (context)=> AlertDialog(
-        title: Text("Your Address"),
+        title: const Text("Your Address"),
         content: TextField(
           controller: _addresscontroller,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: "enter your Address"
           ),
         ),
         actions: [
           TextButton(
-              onPressed: (){profilemod(_addresscontroller.text, 'address');}, child: Text("Save"))
+              onPressed: (){profilemod(_addresscontroller.text, 'address');}, child: const Text("Save"))
         ],
       )
   );
@@ -157,16 +157,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Future editcontactbox() => showDialog(
       context: context,
       builder: (context)=> AlertDialog(
-        title: Text("Your Contact"),
+        title: const Text("Your Contact"),
         content: TextField(
           controller: _contactcontroller,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: "enter your Contact"
           ),
         ),
         actions: [
           TextButton(
-              onPressed: (){profilemod(_contactcontroller.text, 'contact');}, child: Text("Save"))
+              onPressed: (){profilemod(_contactcontroller.text, 'contact');}, child: const Text("Save"))
         ],
       )
   );
