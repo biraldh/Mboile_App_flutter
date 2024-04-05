@@ -20,6 +20,7 @@ class ChatPage extends StatelessWidget {
       _messageController.clear();
     }
   }
+
   // Method to delete all messages
   void deleteAllMessages() async {
     await _chatService.deleteAllMessages(receiverID);
@@ -28,7 +29,15 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(recieverEmail)),
+      appBar: AppBar(
+        title: Text(recieverEmail),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: deleteAllMessages,
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
