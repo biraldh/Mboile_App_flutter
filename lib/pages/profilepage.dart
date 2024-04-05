@@ -1,7 +1,9 @@
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../services/firebase_auths.dart';
 import '../services/profileServices.dart';
 
@@ -19,7 +21,10 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _addresscontroller = TextEditingController();
   final TextEditingController _contactcontroller = TextEditingController();
   final ProfileServices pservice = ProfileServices();
+  final ImagePicker picker = ImagePicker();
   bool nametext = true;
+  XFile? pickedimage;
+  int quality = 80;
 
   @override
   void dispose() {
@@ -54,10 +59,31 @@ class _ProfilePageState extends State<ProfilePage> {
           var email = userData!['email'];
           var contact = userData['Contact'] ?? "Your Contact";
           var address = userData['Address'] ?? "Your Address";
-
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: height/3,
+                    width: width/3,
+                    child: userData['profilepictureurl']!= null?
+                    SizedBox(
+                      child: Image.network(
+                        userData['profilepictureurl'],
+                      ),
+                    )
+                      :Text(
+                      "add an image",
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                  ),
+                  IconButton(onPressed: _pickImage_for_profile,
+                      icon: const Icon(Icons.folder, color: Colors.white,))
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,11 +129,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   IconButton(onPressed: editcontactbox,
-                      icon: Icon(Icons.edit, color: Colors.white,))
+                      icon: const Icon(Icons.edit, color: Colors.white,))
                 ],
               ),
               Text(email,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 30,
                 color: Colors.white,
                 ),
@@ -170,6 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       )
   );
+
   void profilemod(String value, String profilestatus){
     switch(profilestatus){
       case 'name':
@@ -183,6 +210,26 @@ class _ProfilePageState extends State<ProfilePage> {
         break;
     }
 
+  }
+  Future _pickImage_for_profile() async {
+    final XFile? photo =
+    await picker.pickImage(source: ImageSource.gallery, imageQuality: quality);
+    setState(() {
+      if (photo != null){
+        pickedimage = photo;
+        updateProfilePick();
+      }
+      else{
+        pickedimage = null;
+      }
+    });
+  }
+
+  void updateProfilePick() async{
+    if(pickedimage != null){
+      final profpic = File(pickedimage!.path);
+      pservice.Updateprofilepic(currentuser?.email, profpic);
+    }
   }
 }
 
