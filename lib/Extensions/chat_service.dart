@@ -51,4 +51,29 @@ class ChatService {
         .orderBy('timestamp', descending: false) // Order by timestamp
         .snapshots();
   }
+  Future<void> deleteAllMessages(String receiverEmail) async {
+    try {
+      final currentUserEmail = _auth.currentUser!.email!;
+
+      // Get the chat room ID
+      List<String> emails = [currentUserEmail, receiverEmail];
+      emails.sort();
+      String chatRoomID = emails.join('_');
+
+      // Get reference to the chat room's messages collection
+      final chatRoomRef = _firestore
+          .collection("chat_rooms")
+          .doc(chatRoomID)
+          .collection("messages");
+
+      // Delete all messages in the chat room
+      final messagesSnapshot = await chatRoomRef.get();
+      for (final messageDoc in messagesSnapshot.docs) {
+        await messageDoc.reference.delete();
+      }
+    } catch (e) {
+      print('Error deleting messages: $e');
+      // Handle error as per your application's requirements
+    }
+  }
 }
