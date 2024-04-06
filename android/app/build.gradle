@@ -28,6 +28,10 @@ android {
     namespace "com.example.flutterap"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+<<<<<<< HEAD
+=======
+    compileSdkVersion 34
+>>>>>>> pravin
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutterap/Extensions/chat_pages/chat_default.dart';
 import 'package:flutterap/pages/Register.dart';
 import 'package:flutterap/pages/commentPage.dart';
 import 'package:flutterap/pages/createGroup.dart';
 import 'package:flutterap/pages/home.dart';
 import 'package:flutterap/pages/homepage.dart';
-import 'package:flutterap/pages/profilepage.dart';
 import 'package:flutterap/pages/userOwnedCommunity.dart';
 import 'package:flutterap/pages/userOwnedPost.dart';
 
 import 'Pages/Login.dart';
 
-
-
-class RouteGen{
-  static Route<dynamic> generateRoute(RouteSettings settings){
-    switch(settings.name){
+class RouteGen {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
       case '/login':
         return MaterialPageRoute(builder: (_) => Login());
       case '/register':
@@ -27,15 +25,15 @@ class RouteGen{
         return MaterialPageRoute(builder: (_) => usersPost());
       case '/usersCommunity':
         return MaterialPageRoute(builder: (_) => userCommunity());
-      case '/usersProfile':
-        return MaterialPageRoute(builder: (_) => ProfilePage());
+      case '/chatDefault':
+        return MaterialPageRoute(builder: (_) => chatDefault());
       default:
         return _errorRoute();
     }
   }
 
-  static Route<dynamic> _errorRoute(){
-    return MaterialPageRoute(builder: (_){
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
           title: Text('Error'),

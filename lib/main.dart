@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'Routes.dart';
 import 'firebase_options.dart';
 
-Future main() async  {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/login',
       onGenerateRoute: RouteGen.generateRoute,
     );
