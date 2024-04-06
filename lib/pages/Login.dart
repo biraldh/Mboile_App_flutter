@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterap/forget_password.dart';
 
 
 import '../services/firebase_auths.dart';
@@ -113,7 +114,19 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Password',
-                        hintStyle: TextStyle(fontWeight: FontWeight.bold, )
+                        hintStyle: TextStyle(fontWeight: FontWeight.bold, ),
+                        prefixIcon: const Icon(Icons.lock_outlined),
+                        suffixIcon: TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => ForgetPassword()));
+                          },
+                          child: const Text(
+                            'Forgot',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        labelStyle: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ),
