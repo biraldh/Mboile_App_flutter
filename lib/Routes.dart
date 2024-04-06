@@ -8,6 +8,7 @@ import 'package:flutterap/pages/profilepage.dart';
 import 'package:flutterap/pages/userOwnedCommunity.dart';
 import 'package:flutterap/pages/userOwnedPost.dart';
 
+import 'Extensions/chat_pages/chat_default.dart';
 import 'Pages/Login.dart';
 
 
@@ -29,6 +30,8 @@ class RouteGen{
         return MaterialPageRoute(builder: (_) => userCommunity());
       case '/usersProfile':
         return MaterialPageRoute(builder: (_) => ProfilePage());
+      case '/chatDefault':
+        return MaterialPageRoute(builder: (_) => chatDefault());
       default:
         return _errorRoute();
     }
