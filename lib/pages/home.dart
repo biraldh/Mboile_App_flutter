@@ -12,7 +12,7 @@ import '../services/firebase_auths.dart';
 import 'commentPage.dart';
 
 class home extends StatefulWidget {
-<<<<<<< HEAD
+
   const home({super.key});
 
   @override
@@ -20,7 +20,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-=======
+
   const home({Key? key}) : super(key: key);
 
   @override
@@ -28,26 +28,24 @@ class _homeState extends State<home> {
 }
 
 class _HomeState extends State<home> {
->>>>>>> pravin
+
   final FirebaseAuthServices authServices = FirebaseAuthServices();
   final currentuser = FirebaseAuth.instance.currentUser;
   final postServices pService = postServices();
   String dropdownValue = 'One';
-<<<<<<< HEAD
   // List of items in our dropdown menu
-=======
->>>>>>> pravin
+
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-<<<<<<< HEAD
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown[800],
         title: const Text("Home", style: TextStyle(color: Colors.white),),
-=======
+
 
     return Scaffold(
       appBar: AppBar(
@@ -56,13 +54,13 @@ class _HomeState extends State<home> {
           "Home",
           style: TextStyle(color: Colors.white),
         ),
->>>>>>> pravin
+
       ),
       drawer: Drawer(
         child: Container(
           color: Colors.black,
           child: ListView(
-<<<<<<< HEAD
+
             children:  [
               const DrawerHeader(
                   child: Text("Menu",
@@ -85,7 +83,7 @@ class _HomeState extends State<home> {
                 onTap: (){
                   authServices.signOut();
                   Navigator.pushNamed((context), "/login");
-=======
+
             children: [
               const DrawerHeader(
                 child: Text(
@@ -123,20 +121,20 @@ class _HomeState extends State<home> {
                 onTap: () {
                   authServices.signOut();
                   Navigator.pushNamed(context, "/login");
->>>>>>> pravin
+
                 },
                 child: Container(
                   height: 30,
                   width: 20,
                   decoration: BoxDecoration(
                     color: Colors.brown[800],
-<<<<<<< HEAD
+
                     borderRadius: BorderRadius.circular(30)
                   ),
                   child: Center(child: Text("Sign out", style: TextStyle(color: Colors.white),)),
                 ),
               )
-=======
+
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Center(
@@ -147,7 +145,7 @@ class _HomeState extends State<home> {
                   ),
                 ),
               ),
->>>>>>> pravin
+
             ],
           ),
         ),
@@ -159,11 +157,11 @@ class _HomeState extends State<home> {
             DropdownButton<String>(
               value: dropdownValue,
               dropdownColor: Colors.greenAccent,
-<<<<<<< HEAD
+
               icon: const Icon(Icons.keyboard_arrow_down,color: Colors.white),
-=======
+
               icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
->>>>>>> pravin
+
               iconSize: 25,
               style: const TextStyle(color: Colors.white, fontSize: 25),
               onChanged: (String? newValue) {
@@ -174,11 +172,11 @@ class _HomeState extends State<home> {
               items: const [
                 DropdownMenuItem<String>(
                   value: "One",
-<<<<<<< HEAD
+
                   child: Text("Latest",),
-=======
+
                   child: Text("Latest"),
->>>>>>> pravin
+
                 ),
                 DropdownMenuItem<String>(
                   value: "Two",
@@ -188,7 +186,7 @@ class _HomeState extends State<home> {
             ),
             Expanded(
               child: StreamBuilder(
-<<<<<<< HEAD
+
                   stream: pService.listPost(dropdownValue, currentuser?.email),
                   builder: (context, snapshot) {
                     if(snapshot.connectionState == ConnectionState.waiting){
@@ -516,7 +514,7 @@ class _HomeState extends State<home> {
     pService.removeLikes(currentuser?.email, postid);
   }
 
-=======
+
                                                     placeholder: (context,
                                                             url) =>
                                                         const CircularProgressIndicator(),

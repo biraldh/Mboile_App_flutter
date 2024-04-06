@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../global/common/toast.dart';
 
-<<<<<<< HEAD
+
 class FirebaseAuthServices{
   FirebaseAuth _auth = FirebaseAuth.instance;
   Future<User?> signUpWithEmailAndPassword(String email, String password) async{
@@ -10,7 +10,8 @@ class FirebaseAuthServices{
       UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       return credential.user;
     }on FirebaseAuthException catch(e){
-=======
+
+    }
 class FirebaseAuthServices {
   FirebaseAuth _auth = FirebaseAuth.instance;
   Future<User?> signUpWithEmailAndPassword(
@@ -20,19 +21,18 @@ class FirebaseAuthServices {
           email: email, password: password);
       return credential.user;
     } on FirebaseAuthException catch (e) {
->>>>>>> pravin
       showToast(message: '${e.code}');
     }
     return null;
   }
 
-<<<<<<< HEAD
+
   Future<User?> signInWithEmailAndPassword(String email, String password) async{
     try{
       UserCredential credential = await _auth.signInWithEmailAndPassword(email: email, password: password);
       return credential.user;
     }on FirebaseAuthException catch(e){
-=======
+
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -40,13 +40,13 @@ class FirebaseAuthServices {
           email: email, password: password);
       return credential.user;
     } on FirebaseAuthException catch (e) {
->>>>>>> pravin
+
       showToast(message: '${e.code}');
     }
     return null;
   }
 
-<<<<<<< HEAD
+
   Future<void>createUserDoc(user, name)async {
     if(user != null){
       await FirebaseFirestore.instance
@@ -67,7 +67,7 @@ class FirebaseAuthServices {
     await _auth.signOut();
   }
 }
-=======
+
   Future<void> createUserDoc(user, name) async {
     if (user != null) {
       await FirebaseFirestore.instance
@@ -101,4 +101,4 @@ class FirebaseAuthServices {
     await _auth.signOut();
   }
 }
->>>>>>> pravin
+
