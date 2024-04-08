@@ -26,4 +26,24 @@ class commentService{
         .orderBy('commentedOn', descending: true)
         .snapshots();
   }
+  Future<void> threaded_comment( user,  thread, commentid) {
+    return FirebaseFirestore.instance
+        .collection("Comment")
+        .doc(commentid)
+        .update({
+      'thread': FieldValue.arrayUnion([
+        {
+          'user': user,
+          'thread': thread,
+        }
+      ])
+    });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> listthread(commentId) {
+    return FirebaseFirestore.instance
+        .collection("Comment")
+        .where("commentId",isEqualTo: commentId)
+        .snapshots();
+  }
 }
