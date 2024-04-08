@@ -44,6 +44,12 @@ class FirebaseAuthServices {
     return _auth.currentUser;
   }
 
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetail_profile(currentuser) async{
+    return await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentuser!.email)
+        .get();
+  }
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetail(
       Future<User?> currentuser) async {
     User? user = await currentuser;

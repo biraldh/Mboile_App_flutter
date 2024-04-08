@@ -71,6 +71,13 @@ class _HomeState extends State<home> {
                   Navigator.pushNamed(context, "/chatDefault");
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.person, color: Colors.white,),
+                title: Text("My Profile", style: TextStyle(color: Colors.white),),
+                onTap: (){
+                  Navigator.pushNamed((context), "/usersProfile");
+                },
+              ),
               InkWell(
                 onTap: () {
                   authServices.signOut();
@@ -296,8 +303,7 @@ class _HomeState extends State<home> {
                                               : Container(),
                                         ),
                                         Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
                                               padding:
@@ -351,6 +357,13 @@ class _HomeState extends State<home> {
                                                 color: Colors.white,
                                               ),
                                             ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                _showEmojiDialog(context, data['postId'].toString(),data['likeHeartCount'].toString(), data['likeSmileyCount'].toString(), data['likeSadCount'].toString());
+                                              },
+                                              child: Text('React', style: TextStyle(color: Colors.white),
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ],
@@ -387,5 +400,56 @@ class _HomeState extends State<home> {
 
   void likeRemoveFunction(postid) {
     pService.removeLikes(currentuser?.email, postid);
+  }
+
+  void _showEmojiDialog(BuildContext context, postid, likeHeart, likeSmiley, likeSad,) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("React to Post"),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                icon: Icon(Icons.favorite, color: Colors.blue),
+                onPressed: likeHeart == '0' ? () {
+                  setState(() {
+                    pService.likeHeart(currentuser?.email, postid);
+                  });
+                } : null,
+              ),
+              Text(likeHeart, style: const TextStyle(fontSize: 25, color: Colors.black)),
+              IconButton(
+                icon: Icon(Icons.sentiment_very_satisfied, color: Colors.red),
+                onPressed: likeSmiley == '0' ? () {
+                  setState(() {
+                    pService.likeSmiley(currentuser?.email, postid);
+                  });
+                } : null,
+              ),
+              Text(likeSmiley, style: const TextStyle(fontSize: 25, color: Colors.black)),
+              IconButton(
+                icon:
+                Icon(Icons.sentiment_very_dissatisfied, color: Colors.pink),
+                onPressed: likeSad == '0' ? () {
+                  setState(() {
+                    pService.likeSad(currentuser?.email, postid);
+                  });
+                } : null,
+              ),
+              Text(likeSad, style: const TextStyle(fontSize: 25, color: Colors.black)),
+              /*IconButton(
+                icon: Icon(Icons.sentiment_neutral, color: Colors.yellow),
+                onPressed: () {
+                  pService.likeNeutral(currentuser?.email, postid);
+                },
+              ),
+              Text(likeNeutral, style: const TextStyle(fontSize: 15, color: Colors.black),overflow: TextOverflow.ellipsis),*/
+            ],
+          ),
+        );
+      },
+    );
   }
 }

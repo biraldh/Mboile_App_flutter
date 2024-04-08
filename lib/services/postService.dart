@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutterap/global/common/toast.dart';
@@ -36,6 +35,14 @@ class postServices{
           'dislikeCount': 0,
           'likedMembers': '',
           'dislikedMembers': '',
+          'likeHeartCount': 0,
+          'likeHeartMembers': '',
+          'likeSmileyCount': 0,
+          'likeSmileyMembers': '',
+          'likeSadCount': 0,
+          'likeSadMembers': '',
+          /*'likeNeutralCount': 0,
+          'likeNeutralMembers': '',*/
           'postOwner': user,
           'postedOn': postedOn
         });
@@ -58,6 +65,12 @@ class postServices{
           'dislikeCount': 0,
           'likedMembers': '',
           'dislikedMembers': '',
+          'likeHeartCount': 0,
+          'likeHeartMembers': '',
+          'likeSmileyCount': 0,
+          'likeSmileyMembers': '',
+          'likeSadCount': 0,
+          'likeSadMembers': '',
           'postOwner': user,
           'postedOn': postedOn
         });
@@ -115,7 +128,7 @@ class postServices{
         .update({
       'dislikeCount': FieldValue.increment(-1),
       'dislikedMembers': FieldValue.arrayRemove([user]),
-      }
+    }
     );
   }
   Future<void> addDislike(user,postid)async {
@@ -129,6 +142,94 @@ class postServices{
     }
     );
   }
+  Future<void> likeHeart(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeHeartCount' : FieldValue.increment(1),
+      'likeHeartMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> removeHeart(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeHeartCount': FieldValue.increment(-1),
+      'likeHeartMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> likeSmiley(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeSmileyCount' : FieldValue.increment(1),
+      'likeSmileyMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> removeSmiley(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeSmileyCount': FieldValue.increment(-1),
+      'likeSmileyMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> likeSad(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeSadCount' : FieldValue.increment(1),
+      'likeSadMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> removeSad(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeSadCount': FieldValue.increment(-1),
+      'likeSadMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  /*Future<void> likeNeutral(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeNeutralCount' : FieldValue.increment(1),
+      'likeNeutralMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }
+  Future<void> removeNeutral(user,postid)async {
+    print(postid);
+    return FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postid)
+        .update({
+      'likeNeutralCount': FieldValue.increment(-1),
+      'likeNeutralMembers' : FieldValue.arrayUnion([user])
+    }
+    );
+  }*/
   Stream<QuerySnapshot<Map<String, dynamic>>> ownersPost(user) {
     return FirebaseFirestore.instance
         .collection("Posts")
@@ -140,7 +241,7 @@ class postServices{
         .collection('Posts')
         .doc(postId)
         .delete();
-    
+
     showToast(message: "Post deleted");
   }
   Stream<QuerySnapshot<Map<String, dynamic>>> postByGroup(gname) {

@@ -12,11 +12,11 @@ class commentService{
         .collection("Comment")
         .doc(commentId)
         .set({
-          'commentId': commentId,
-          'commentOwner':user,
-          'comment':comment,
-          'postid': postid,
-          'commentedOn': DateTime.timestamp()
+      'commentId': commentId,
+      'commentOwner':user,
+      'comment':comment,
+      'postid': postid,
+      'commentedOn': DateTime.timestamp()
     });
   }
   Stream<QuerySnapshot<Map<String, dynamic>>> getComments(postid){
@@ -24,6 +24,26 @@ class commentService{
         .collection("Comment")
         .where('postid', isEqualTo: postid)
         .orderBy('commentedOn', descending: true)
+        .snapshots();
+  }
+  Future<void> threaded_comment( user,  thread, commentid) {
+    return FirebaseFirestore.instance
+        .collection("Comment")
+        .doc(commentid)
+        .update({
+      'thread': FieldValue.arrayUnion([
+        {
+          'user': user,
+          'thread': thread,
+        }
+      ])
+    });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> listthread(commentId) {
+    return FirebaseFirestore.instance
+        .collection("Comment")
+        .where("commentId",isEqualTo: commentId)
         .snapshots();
   }
 }
